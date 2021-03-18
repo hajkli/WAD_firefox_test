@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script src="https://unpkg.com/web-audio-daw"></script>
+	</head>
+	<body>
+		
+		<button onclick="pllaySegmentedMusic()">
+			play segmented music
+		</button>
+
+		<script>
+			const signal1 = new Wad({
+				source: 'signal-1.wav',
+				callback: () => {
+					signal1.play();
+					signal1.stop();
+			
+				},
+			});
+			
+
+			const signal2 = new Wad({
+				source: 'signal-2.wav',
+				callback: () => {
+					signal2.play();
+					signal2.stop();
+				},
+			});
+
+			function playSignal1(){
+				signal1.play().then(() => {
+					playSignal2();
+				})
+
+			}
+
+			function playSignal2() {
+				signal2.play().then(() => {
+					playSignal1();
+				})
+			}
+
+			function pllaySegmentedMusic(){
+				playSignal1();
+			}
+
+
+		
+		</script>
+	</body>
+</html>
